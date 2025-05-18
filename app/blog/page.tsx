@@ -35,12 +35,8 @@ export default function BlogPage() {
   };
 
   const refreshStats = () => {
-    // Force a re-render of the Stats component
-    const statsElement = document.querySelector('[data-stats-refresh]');
-    if (statsElement) {
-      const event = new Event('statsRefresh');
-      statsElement.dispatchEvent(event);
-    }
+    // Dispatch the stats refresh event
+    window.dispatchEvent(new Event('statsRefresh'));
   };
 
   const filteredPosts = posts.filter(post => 

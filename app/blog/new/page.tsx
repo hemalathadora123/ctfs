@@ -88,6 +88,9 @@ export default function NewBlogPost() {
         throw new Error(responseData.error || 'Failed to create post');
       }
 
+      // Refresh stats after successful post creation
+      window.dispatchEvent(new Event('statsRefresh'));
+      
       router.push('/blog');
     } catch (error) {
       console.error('Error creating post:', error);

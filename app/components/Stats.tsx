@@ -33,16 +33,12 @@ export default function Stats() {
       fetchStats();
     };
 
-    const statsElement = document.querySelector('[data-stats-refresh]');
-    if (statsElement) {
-      statsElement.addEventListener('statsRefresh', handleStatsRefresh);
-    }
+    // Listen for the custom event on the window object
+    window.addEventListener('statsRefresh', handleStatsRefresh);
 
     // Cleanup
     return () => {
-      if (statsElement) {
-        statsElement.removeEventListener('statsRefresh', handleStatsRefresh);
-      }
+      window.removeEventListener('statsRefresh', handleStatsRefresh);
     };
   }, []);
 
